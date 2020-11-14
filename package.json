@@ -4,11 +4,22 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgsdesign/NoteTakerWithHeroku.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/cgsdesign/NoteTakerWithHeroku/issues"
+  },
+  "homepage": "https://github.com/cgsdesign/NoteTakerWithHeroku#readme"
 }

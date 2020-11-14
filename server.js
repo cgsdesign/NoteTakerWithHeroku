@@ -12,7 +12,23 @@
 //node server.js - this is how we run the code so we can see it on the server. The http will be http://localhost:PORTNUMBER/DATA/QUALIFIERS
 //fetch() is the front end API equvalent to app.get
 
-const fs = require('fs');
-const path = require('path');
+ const fs = require('fs');
+ const path = require('path');
 //bove is needed to make editing our database file possible
 const express = require('express')
+const {notes} = require('./db/db')
+const app = express();
+app.use(express.static('public'));//links all front end files in to live page client side
+
+
+
+app.get('/api/dbnotes', (req, res) => {
+    res.json(notes);
+  });
+
+
+
+
+app.listen(3001, () => {
+    console.log(`API server now on port 3001!`);
+  });

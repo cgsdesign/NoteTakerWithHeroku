@@ -1,4 +1,5 @@
 // npm init -y  then npm i express to install express (npm init -y) stands for implicit yes to all prompts
+// heroku create
 // git add -A
 // git commit -m "Add Heroku"
 // git push heroku feature/MVP:main = to bypass heroku not willing to go to anything not main
@@ -21,14 +22,15 @@ const app = express();
 app.use(express.static('public'));//links all front end files in to live page client side
 
 
-
-app.get('/api/dbnotes', (req, res) => {
+//only links notes
+app.get('/notes', (req, res) => {
+    console.log("ping me")
     res.json(notes);
   });
 
 
 
-
+//liveify me!
 app.listen(3001, () => {
     console.log(`API server now on port 3001!`);
   });

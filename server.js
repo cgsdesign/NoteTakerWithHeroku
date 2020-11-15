@@ -5,7 +5,7 @@
 // git push heroku feature/MVP:main = to bypass heroku not willing to go to anything not main
 // NOTE branch MUST be commited first indempendantly or this wont work. 
 //to see life site, comand line heroku open
-// to run with animals  https://shrouded-castle-54418.herokuapp.com/api/animals
+// thttps://notetakerwithheroku.herokuapp.com/.....
 // npm install
 // npm  init express
 //npm init y
@@ -18,6 +18,7 @@
 //bove is needed to make editing our database file possible
 const express = require('express')
 const {notes} = require('./db/db')
+const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.static('public'));//links all front end files in to live page client side
 
@@ -28,9 +29,12 @@ app.get('/notes', (req, res) => {
     res.json(notes);
   });
 
-
+//link live page
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+  });
 
 //liveify me!
-app.listen(3001, () => {
-    console.log(`API server now on port 3001!`);
+app.listen(PORT, () => {
+    console.log(`API server now on port ${PORT}!`);
   });

@@ -19,6 +19,7 @@
 //bove is needed to make editing our database file possible
 const express = require('express')
 const {notes} = require('./db/db');
+var uniqid = require('uniqid');//unique id gen
 const { type } = require('os');
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -60,13 +61,19 @@ function validateNote(notes) {
     }
     return true
 }
+//USE TO GENERATE RANDOM ID
+/////////function newid = (uniqid())
 
 function createNewNote(body, notesArray) {
     const note = body
+    //newid = `id: ${(uniqid())}`
+    //note.push(newid)
+    console.log('thisisthe full note:' + note)
+    //console.log('this is the new id:' + newid)
     notesArray.push(note)
     fs.writeFileSync(
         path.join(__dirname, './db/db.json'),//join new note to director array
-        JSON.stringify({ notes: notesArray}, null, 2)//save JS array as JSON, null eans dont ess with current data, and 2 adds a space between existing data and new note for orginization
+        JSON.stringify({ notes: notesArray}, null, 2)//save JS array as JSON, null means dont mess with current data, and 2 adds a space between existing data and new note for orginization
     )
     console.log(note + "saved")
     return note
@@ -74,7 +81,9 @@ function createNewNote(body, notesArray) {
 //.post - note /api/notes references url and ties into when called in functionin index
 //--ASK KEVIN TO EXPLAIN!!!!! HOW DOES THE INDEX KNOW WHAT .POST TO GRAB AND DO LAST CHAPTER
 app.post('/api/notes', (req,res) => {
-    req.body.id = notes.length.toString()//FOR NOW ONLY
+    newid = uniqid()
+    console.log(newid)
+    req.body.id = newid//FOR NOW ONLY
 
     // if (!validateNote(req.body)){
     //     res.status(400).send('note has a blank section')

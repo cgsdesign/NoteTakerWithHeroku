@@ -27,7 +27,7 @@ app.use(express.json());//DONT MISS-without this, you will have undefined errors
 app.use(express.static('public'));//links all front end files in to live page client side
 
 
-//only links notes (for testing)---------------------------------------------------------
+// links all notes (originally for testing)---------------------------------------------------------
 app.get('/api/notes', (req, res) => {
     res.json(notes);
   });
@@ -53,6 +53,7 @@ app.get('/api/notes/:id', (req, res) => {
 //------STARTING POST REQUESTS--------------//
 //-----------------------------------------//
 
+//note:test below note realy needed because there is a test on the front end, but for notes sake, keeping it in.
 function validateNote(notes) {
     if (!notes.title || typeof notes.title !== 'string') {
         return false;
@@ -62,15 +63,9 @@ function validateNote(notes) {
     }
     return true
 }
-//USE TO GENERATE RANDOM ID
-/////////function newid = (uniqid())
 
 function createNewNote(body, notesArray) {
     const note = body
-    //newid = `id: ${(uniqid())}`
-    //note.push(newid)
-    console.log('thisisthe full note:' + note)
-    //console.log('this is the new id:' + newid)
     notesArray.push(note)
     fs.writeFileSync(
         path.join(__dirname, './db/db.json'),//join new note to director array
@@ -80,12 +75,12 @@ function createNewNote(body, notesArray) {
     return note
 }
 //.post - note /api/notes references url and ties into when called in functionin index
-//--ASK KEVIN TO EXPLAIN!!!!! HOW DOES THE INDEX KNOW WHAT .POST TO GRAB AND DO LAST CHAPTER
 app.post('/api/notes', (req,res) => {
     newid = uniqid()
-    console.log({ newid, req });
+    //npm id gen
+    //console.log({ newid, req });// this is a GREAT check to see if express/front end is coming in correctly
     console.log(newid)
-    req.body.id = newid//FOR NOW ONLY
+    req.body.id = newid
 
      if (!validateNote(req.body)){
          res.status(400).send('note has a blank section')
@@ -96,6 +91,28 @@ app.post('/api/notes', (req,res) => {
     }
 
 })
+
+//---------------------------------------------------//
+//-----STARTING CODE TO DELETE NOTES----------------//
+//-------------------------------------------------//
+function removeById(id, notesArray) {
+  const newArray = notesArray.filter(notes => notes.id !== id)[0];//NOTE: willhave to add something in case of notes deleted
+  console.log(newArray)
+  let notesArray = JSON.stringify(newArray);
+  return notesArray;
+}
+
+app.delete('/api/notes/:id', (req, res) => {
+  const remainingNotes = removeById()
+  req.body.id = remainingNotes
+  //const id = req.params.id;
+  console.log("running delete")
+  remainingNotes.delete(id, (err) => {
+   if (err) {return (err)};
+   res.send({ message: 'Deleted' });
+  });
+ });
+//filter
 
 //---------------------------------------------------//
 //-----STARTING CODE TO CONNECT WITH LIVE PAGE------//

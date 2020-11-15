@@ -23,6 +23,7 @@ var uniqid = require('uniqid');//unique id gen
 const { type } = require('os');
 const PORT = process.env.PORT || 3001;
 const app = express();
+app.use(express.json());//DONT MISS-without this, you will have undefined errors
 app.use(express.static('public'));//links all front end files in to live page client side
 
 
@@ -82,16 +83,17 @@ function createNewNote(body, notesArray) {
 //--ASK KEVIN TO EXPLAIN!!!!! HOW DOES THE INDEX KNOW WHAT .POST TO GRAB AND DO LAST CHAPTER
 app.post('/api/notes', (req,res) => {
     newid = uniqid()
+    console.log({ newid, req });
     console.log(newid)
     req.body.id = newid//FOR NOW ONLY
 
-    // if (!validateNote(req.body)){
-    //     res.status(400).send('note has a blank section')
-    // }
-    // else {
+     if (!validateNote(req.body)){
+         res.status(400).send('note has a blank section')
+     }
+     else {
         const note = createNewNote(req.body, notes)
         res.json(note)
-    // }
+    }
 
 })
 

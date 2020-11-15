@@ -5,7 +5,8 @@
 // git push heroku feature/MVP:main = to bypass heroku not willing to go to anything not main
 // NOTE branch MUST be commited first indempendantly or this wont work. 
 //to see life site, comand line heroku open
-// thttps://notetakerwithheroku.herokuapp.com/.....
+// https://notetakerwithheroku.herokuapp.com/.....
+//local :   http://localhost:3001/
 // npm install
 // npm  init express
 //npm init y
@@ -24,14 +25,17 @@ app.use(express.static('public'));//links all front end files in to live page cl
 
 
 //only links notes
-app.get('/notes', (req, res) => {
+app.get('/dbnotes', (req, res) => {
     console.log("ping me")
     res.json(notes);
   });
 
-//link live page
+//link live pages
   app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
+  });
+  app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
   });
 
 //liveify me!

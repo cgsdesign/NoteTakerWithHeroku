@@ -95,23 +95,23 @@ app.post('/api/notes', (req,res) => {
 //---------------------------------------------------//
 //-----STARTING CODE TO DELETE NOTES----------------//
 //-------------------------------------------------//
-function removeById(id, notesArray) {
-  const newArray = notesArray.filter(notes => notes.id !== id)[0];//NOTE: willhave to add something in case of notes deleted
-  console.log(newArray)
-  let notesArray = JSON.stringify(newArray);
-  return notesArray;
-}
+// function removeById(id, notesArray) {
+//   const newArray = notesArray.filter(notes => notes.id !== id)[0];//NOTE: willhave to add something in case of notes deleted
+//   console.log(newArray)
+//   let notesArray = JSON.stringify(newArray);
+//   return notesArray;
+// }
 
-app.delete('/api/notes/:id', (req, res) => {
-  const remainingNotes = removeById()
-  req.body.id = remainingNotes
-  //const id = req.params.id;
-  console.log("running delete")
-  remainingNotes.delete(id, (err) => {
-   if (err) {return (err)};
-   res.send({ message: 'Deleted' });
-  });
- });
+// app.delete('/api/notes/:id', (req, res) => {
+//   const remainingNotes = removeById()
+//   req.body.id = remainingNotes
+//   //const id = req.params.id;
+//   console.log("running delete")
+//   remainingNotes.delete(id, (err) => {
+//    if (err) {return (err)};
+//    res.send({ message: 'Deleted' });
+//   });
+//  });
 //filter
 
 //---------------------------------------------------//

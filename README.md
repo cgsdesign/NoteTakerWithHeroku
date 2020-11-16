@@ -1,28 +1,28 @@
 # NoteTakerWithHeroku
-​
-## Creating a Note Taking App Using Express
+​Creating a Note Taking App Using Express
 ![license](https://img.shields.io/badge/MIT-License-brightgreen)
 
 ### Live site at [NoteTakerWithHeroku](https://afternoon-lake-66765.herokuapp.com/)
 ​
-​For this project I created the backend code for saving notes using Heroku. 
+​For this project I created the backend code for saving notes for a predesigned note taking site. I used Heroku to host the site and Express with .get and .push commends to allow for data pulls.  
 
 ## Key Features
 * back end hosted on Heroku
-* unique IDs generated for tasks using npm uniqid
+* unique IDs generated for tasks using npm Uniqid
 * landing page and notes page load from server
-* saved notes load on left side of page pon page open or note save
+saved notes load on left side of page upon page open or note save
+notes are saved in JSON
 
 ![NoteTakerWithHeroku](public/assets/images/Mockup1.png)
 ![NoteTakerWithHeroku](public/assets/images/Mockup2.png)
 
 ## Credits
 ​* Heroku
-* unique ID generator from Uniqid npm
-* Express npm
+* Uniqid npm - Copyright (c) 2014-2019 Halász Ádám mail@adamhalasz.com
+* Express npm - The original author of Express is TJ Holowaychuk - The current lead maintainer is Douglas Christopher Wilson
 * Front End Code form Class
 * Inquirer Copyright (c) 2012 Simon Boudrias
-* License text curtasy of https://choosealicense.com/licenses/mit/
+* License text curtesy of https://choosealicense.com/licenses/mit/
 ​
 ​
 ## License
